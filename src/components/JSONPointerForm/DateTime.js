@@ -17,7 +17,7 @@ const DateTime = ({
         {
           __html: translate(title) +
           (required
-            ? `<span class="asterisk" title="${translate('This is a required field!')}">*</span>`
+            ? `<span class="asterisk" title="${translate('Dies ist ein Pflichtfeld!')}">*</span>`
             : '')
         }}
       className={required ? 'required' : ''}
