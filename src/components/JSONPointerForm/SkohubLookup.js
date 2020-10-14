@@ -89,7 +89,7 @@ const SkohubLookup = (props) => {
     }).then(response => response.json())
       .then(setScheme)
 
-    fetch(schemaLocation, {
+    fetch(schemaLocation.includes('index.json') ? schemaLocation.replace(/.json?/, '.index') : schemaLocation, {
       headers: {
         Accept: 'text/index'
       }
