@@ -29,7 +29,7 @@ const Preview = ({ json, clear }) => {
             document.execCommand('copy')
             window.getSelection().removeAllRanges()
           }}
-          value="Copy to clipboard"
+          value="In die Zwischenablage kopieren"
         />
       </div>
       <Highlight language="javascript">
