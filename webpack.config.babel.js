@@ -16,7 +16,7 @@ let Config = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'public/bundle.js'
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -39,7 +39,7 @@ let Config = {
         use: {
           loader: 'file-loader',
           options: {
-            outputPath: 'public/'
+            esModule: false
           }
         }
       }
@@ -58,7 +58,7 @@ if (ENV === 'production') {
     mode: 'production',
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'public/styles.css'
+        filename: 'styles.css'
       }),
       new OptimizeCSSAssetsPlugin({
         cssProcessor: cssnano,
