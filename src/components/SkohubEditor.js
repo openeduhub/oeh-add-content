@@ -68,6 +68,11 @@ class SkohubEditor extends React.Component {
     this.setState({ schemaURL: url })
   }
 
+  callWloApi ( data ) {
+    console.log(data)
+    console.log('callWloApi')
+  }
+
   render () {
     const {
       setSchema,
@@ -113,7 +118,8 @@ class SkohubEditor extends React.Component {
                 }}
                 validate={validateSchema}
                 onSubmit={(data) => {
-                  console.log(data)
+                  //console.log(data)
+                  this.callWloApi(data)
                   this.setState({ json: data })
                 }}
               >
