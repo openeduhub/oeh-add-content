@@ -134,7 +134,7 @@ const SkohubLookup = (props) => {
                 setQuery(null)
               }, 250
               )}
-              placeholder={title}
+              placeholder="Bitte auswählen"
             />
             {expanded &&
                 <NestedList
