@@ -8,7 +8,7 @@ const Header = ({ setSchema, schemaURL, setSchemaURL }) => {
     <header className="Header">
       <div className="headerContent">
         <h1>
-          <a href="/">Skohub-Editor</a>
+          <a href="/">Wir lernen Online</a>
         </h1>
 
         <form

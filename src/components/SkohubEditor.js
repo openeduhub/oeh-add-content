@@ -122,7 +122,7 @@ class SkohubEditor extends React.Component {
                   widgets={{ SkohubLookup }}
                 />
                 <div className="buttons">
-                  <button className="btn" type="submit">Publish</button>
+                  <button className="btn submit-btn" type="submit">Absenden</button>
                 </div>
               </Form>
 
