@@ -12,6 +12,10 @@ import '../styles/components/FormsStructure.pcss'
 import '../styles/formStyle.pcss'
 
 const DEFAULT_SCHEMA = 'https://raw.githubusercontent.com/sroertgen/lrmi-profile/oeh-schema/draft/schemas/oeh-schema/schema.json'
+const API_ENDPOINT =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:3000/send-to-es'
+    : '/backend/send-to-es';
 
 class SkohubEditor extends React.Component {
   constructor (props) {
@@ -69,23 +73,25 @@ class SkohubEditor extends React.Component {
   }
 
   callWloApi ( data ) {
-    console.log(data)
-    console.log('callWloApi')
-    console.log(data.id)
-
-    fetch('backend', {
-      method: 'POST', // or 'PUT'
+    fetch(API_ENDPOINT, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response;
+        })
+        // .then(response => response.json())
         .then(data => {
           console.log('Success:', data)
         })
         .catch((error) => {
-          console.error('Error:', error);
+          console.error(error);
         });
   }
 
