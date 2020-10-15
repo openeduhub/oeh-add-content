@@ -6,6 +6,7 @@ export class LogResponseDataFilter extends BaseExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
     super.catch(exception, host);
     if (exception.isAxiosError) {
+      console.error('url:', exception.response.config.url);
       console.error('statusText:', exception.response.statusText);
       console.error('data:', exception.response.data);
     }

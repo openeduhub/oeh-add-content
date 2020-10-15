@@ -32,10 +32,3 @@ Omitting `PORT` will start the server at port 8080.
 
 ### start scripts
 You may want to use the start scripts in `scripts/` to manage via init and to monitor them with `monit`.
-
-## Run Docker Image
-
-```
-docker run -d --rm --name skohub-editor -p 3010:80 openeduhub/skohub-editor
-```
-This will run the public Docker image and on and serve the application on port 3010.

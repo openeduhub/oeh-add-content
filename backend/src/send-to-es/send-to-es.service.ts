@@ -1,4 +1,5 @@
 import { HttpService, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { env } from 'process';
 import { RequestData } from './RequestData';
 
@@ -9,16 +10,18 @@ export class SendToEsService {
     'URL Vorschlag durch Browser-Plugin';
 
   private readonly apiUrl =
-    env.EDU_SHARING_URL + SendToEsService.REST_URL_PREFIX;
+    this.configService.get('EDU_SHARING_URL') + SendToEsService.REST_URL_PREFIX;
   private readonly saveToUploadDirUrl =
     this.apiUrl +
-    env.EDU_SHARING_UPLOAD_DIR_ID +
+    this.configService.get('EDU_SHARING_UPLOAD_DIR_ID') +
     '/children?type=ccm%3Aio&renameIfExists=true';
   private headers = {
     Authorization:
       'Basic ' +
       Buffer.from(
-        env.EDU_SHARING_USER + ':' + env.EDU_SHARING_PASSWORD,
+        this.configService.get('EDU_SHARING_USER') +
+          ':' +
+          this.configService.get('EDU_SHARING_PASSWORD'),
       ).toString('base64'),
   };
 
@@ -28,7 +31,10 @@ export class SendToEsService {
     status: '200_tocheck',
   };
 
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private httpService: HttpService,
+    private configService: ConfigService,
+  ) {}
 
   /**
    * Creates a new node in Edu-Sharing with the provided data.
