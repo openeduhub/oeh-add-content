@@ -26,13 +26,20 @@ npm run start:dev
 
 ## Run Production Builds (Docker)
 
+Run the Docker image and and serve the application on http://localhost:$PORT as configured in
+`.env`:
 ```
-scripts/run-and-update.sh
+./scripts/update-and-run.sh
 ```
-This will run the public Docker image and on and serve the application on http://localhost:3010.
+
+Run other `docker-compose` commands through `./scripts/docker-compose.sh`, e.g.
+```
+./scripts/docker-compose.sh down
+```
 
 ## Build
 
 ```
-scripts/build.sh
+./scripts/build.sh
+docker build -f docker/Dockerfile --tag=openeduhub/oeh-add-content:local .
 ```

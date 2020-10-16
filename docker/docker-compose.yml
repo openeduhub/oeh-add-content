@@ -1,13 +1,13 @@
 version: "3.4"
 
 services:
-  add-content:
-    image: openeduhub/add-content
+  oeh-add-content:
+    image: openeduhub/oeh-add-content:${RELEASE?}
     environment:
       - EDU_SHARING_URL=${EDU_SHARING_URL}
       - EDU_SHARING_UPLOAD_DIR_ID=${EDU_SHARING_UPLOAD_DIR_ID}
       - EDU_SHARING_USER=${EDU_SHARING_USER}
       - EDU_SHARING_PASSWORD=${EDU_SHARING_PASSWORD}
     ports:
-      - "127.0.0.1:3010:80"
+      - "127.0.0.1:${PORT?}:80"
     restart: on-failure
