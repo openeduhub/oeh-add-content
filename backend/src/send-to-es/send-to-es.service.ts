@@ -66,15 +66,17 @@ export class SendToEsService {
       'cm:name': [data.title],
       // 'cclom:title': [data.title],
       'cclom:general_keyword': data.keyword,
-      'cclom:general_description': [data.description],
-      'ccm:objecttype': [data.objectType],
+      'cclom:general_description': data.description
+        ? [data.description]
+        : undefined,
+      'ccm:objecttype': data.objectType ? [data.objectType] : undefined,
       'ccm:taxonid': data.discipline,
       'ccm:educationalintendedenduserrole': data.intendedEndUserRole,
       'ccm:educationalcontext': data.educationalContext,
       'ccm:educationallearningresourcetype': data.learningResourceType,
       'ccm:sourceContentType': data.sourceContentType,
       'ccm:toolCategory': data.toolCategory,
-      'ccm:commonlicense_key': [data.license],
+      'ccm:commonlicense_key': data.license ? [data.license] : undefined,
     };
   }
 }
