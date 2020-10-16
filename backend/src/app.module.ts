@@ -6,7 +6,12 @@ import { SendToEsController } from './send-to-es/send-to-es.controller';
 import { SendToEsService } from './send-to-es/send-to-es.service';
 
 @Module({
-  imports: [ConfigModule.forRoot({ envFilePath: '../.env' }), HttpModule],
+  imports: [
+    ConfigModule.forRoot({ envFilePath: '../.env' }),
+    HttpModule.register({
+      timeout: 10000,
+    }),
+  ],
   controllers: [AppController, SendToEsController],
   providers: [AppService, SendToEsService],
 })
