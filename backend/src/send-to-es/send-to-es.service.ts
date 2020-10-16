@@ -62,16 +62,19 @@ export class SendToEsService {
 
   private mapRequestData(data: RequestData): { [property: string]: string[] } {
     return {
+      'ccm:wwwurl': [data.url],
       'cm:name': [data.title],
       // 'cclom:title': [data.title],
-      'ccm:wwwurl': [data.url],
-      'ccm:taxonid': [data.discipline],
-      'ccm:educationalintendedenduserrole': [data.intendedEndUserRole],
-      'ccm:educationalcontext': [data.educationalContext],
-      'ccm:educationallearningresourcetype': [data.learningResourceType],
-      'ccm:sourceContentType': [data.sourceContentType],
-      'ccm:toolCategory': [data.toolCategory],
+      'cclom:general_keyword': data.keyword,
+      'cclom:general_description': [data.description],
       'ccm:objecttype': [data.objectType],
+      'ccm:taxonid': data.discipline,
+      'ccm:educationalintendedenduserrole': data.intendedEndUserRole,
+      'ccm:educationalcontext': data.educationalContext,
+      'ccm:educationallearningresourcetype': data.learningResourceType,
+      'ccm:sourceContentType': data.sourceContentType,
+      'ccm:toolCategory': data.toolCategory,
+      'ccm:commonlicense_key': [data.license],
     };
   }
 }
