@@ -6,6 +6,7 @@
   max-width: 40%;
   margin-right: 10px;
   padding-top: 0;
+  font-family: futura-pt, sans-serif, sans-serif;
 
   & .Builder {
     margin-bottom: 20px;
@@ -13,9 +14,7 @@
 
   & input {
     width: 100%;
-    padding: 5px 10px;
-    border: 1px solid var(--border);
-    border-radius: 0;
+    border-radius: 8px;
   }
 
   & .asterisk {
@@ -28,7 +27,6 @@
     text-transform: capitalize;
 
     & + input {
-      border-color: var(--error);
     }
   }
 
@@ -46,15 +44,10 @@
   }
 
   & .Fieldset > div > .List > ul {
-    padding-left: 15px;
-    border-left: 1px solid var(--primary);
-    margin-left: 5px;
 
     & > li {
-      position: relative;
 
       & > div {
-        padding-left: 15px;
       }
 
       &:before {
@@ -64,7 +57,6 @@
         width: 1px;
         top: 50%;
         transform: translateY(-50%);
-        background-color: var(--primary);
       }
 
       &:after {
@@ -74,7 +66,6 @@
         width: 18px;
         top: 50%;
         left: -17px;
-        background-color: var(--primary);
       }
     }
   }
@@ -92,13 +83,14 @@
 
       & li:last-child {
         margin-bottom: 0;
-        border-bottom: 0;
+        border-bottom: 1;
       }
     }
   }
 
   & .optionsContainer ul li {
     margin-bottom: 0;
+    
 
     & label {
       border-bottom: 1px solid var(--primary);
@@ -118,6 +110,9 @@
       position: relative;
       padding-right: 30px;
       font-weight: 600;
+      border: 1px solid var(--primary);
+      box-shadow: none;
+      border-radius: 8px;
 
       &.error {
         text-transform: capitalize;
@@ -143,19 +138,21 @@
       width: 400px;
       top: calc(100% + 5px);
       margin-bottom: 20px;
-      background-color: white;
-      border: 1px solid var(--primary);
+      background-color: #f9f9f9;
       max-width: calc(33vw);
+      border-radius: 8px;
 
       & .optionsContainer {
         border: 1px solid var(--primary);
+        border-radius: 8px;
+        
       }
 
       & > .filterContainer {
         position: relative;
 
         & input[type=text] {
-          border-radius: 0;
+          border-radius: 8px;
           margin: 0;
           padding-right: 30px;
           box-shadow: none;
@@ -181,7 +178,7 @@
 
         &:hover,
         &:focus {
-          background-color: var(--base);
+          background-color: #f9f9f9;
           color: var(--text);
         }
       }
@@ -200,7 +197,8 @@
     color: var(--base);
     position: relative;
     border: 1px solid var(--primary);
-    box-shadow: 2px 2px 0 0 var(--primary);
+    box-shadow: none;
+    border-radius: 8px;
 
     & label {
       padding: 7px 10px;
@@ -239,12 +237,14 @@
 
   & .newItemWrapper {
     & > label {
-      color: var(--primary);
-      padding: 0;
+      color: #fefefe;
+      
+      border: 1px solid var(--primary);
+
 
       &:hover,
       &:focus {
-        color: var(--accent);
+        color: #fefefe;
       }
     }
   }
@@ -262,22 +262,34 @@
 
   & .SkohubLookup {
     position: relative;
+    
+
+    &::after {
+        /* content: "\0203A"; */
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-51%) rotate(90deg);
+        pointer-events: none;
+      }
 
     & .skohubLookupSelectedValue {
       background-color: var(--inputBase);
-      padding: 5px 10px;
+      padding: 5px 30px 5px 10px;
       color: var(--primary);
       font-weight: bold;
       position: relative;
-      box-shadow: 2px 2px 0 0 var(--primary);
       border: 1px solid var(--primary);
+      box-shadow: none;
+      border-radius: 8px;
+      display: inline-block;
 
       &:hover {
         background-color: var(--inputAction);
       }
 
       &:after {
-        font-family: "Source Sans Pro', futura-pt, sans-serif";
+        font-family: "futura-pt, sans-serif, sans-serif";
         content: "×";
         position: absolute;
         right: 10px;
@@ -304,7 +316,7 @@
       }
 
       & span:last-child {
-        border-bottom: 1px solid var(--primary);
+        border-bottom: 0px solid var(--primary);
       }
 
       /* Nested levels vased on the inital padding

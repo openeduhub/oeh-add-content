@@ -49,8 +49,8 @@ const List = ({
                 className="formControl"
                 id={`${formId}-${name}-toggle`}
               />
-              <label htmlFor={`${formId}-${name}-toggle`}>
-                {translate('add', { type: translate(title) })}
+              <label className="btn" htmlFor={`${formId}-${name}-toggle`}>
+                {translate('weiteres Element hinzufügen', { type: translate(title) })}
               </label>
               <div className="newItem">
                 {React.cloneElement(children)}

@@ -11,7 +11,8 @@ import Preview from './Preview'
 import '../styles/components/FormsStructure.pcss'
 import '../styles/formStyle.pcss'
 
-const DEFAULT_SCHEMA = 'https://raw.githubusercontent.com/sroertgen/lrmi-profile/oeh-schema/draft/schemas/oeh-schema/schema.json'
+const DEFAULT_SCHEMA = 'https://raw.githubusercontent.com/openeduhub/lrmi-profile/wlo-schema/draft/schemas/schema.json'
+const EXTENDED_SCHEMA = 'https://raw.githubusercontent.com/openeduhub/lrmi-profile/wlo-schema/draft/schemas/schema-extended.json'
 const API_ENDPOINT =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:3000/send-to-es'
@@ -45,7 +46,8 @@ class SkohubEditor extends React.Component {
       schemaURL: url.searchParams.get('schema') ||
         savedSchemaURL ||
         DEFAULT_SCHEMA,
-      view: 'Editor'
+      view: 'Editor',
+      showExtended: false
     }
     this.setSchema = this.setSchema.bind(this)
     this.setSchemaURL = this.setSchemaURL.bind(this)
@@ -70,6 +72,15 @@ class SkohubEditor extends React.Component {
 
   setSchemaURL (url) {
     this.setState({ schemaURL: url })
+  }
+
+  toggleSchema(showExtended) {
+    this.setState({ showExtended: !showExtended})
+    if (!showExtended) {
+      this.setSchema(EXTENDED_SCHEMA)
+    } else {
+      this.setSchema(DEFAULT_SCHEMA)
+    }
   }
 
   callWloApi ( data ) {
@@ -99,7 +110,7 @@ class SkohubEditor extends React.Component {
     const {
       setSchema,
       setSchemaURL,
-      state: { json, schema, schemaURL, view }
+      state: { json, schema, schemaURL, view, showExtended }
     } = this
 
     let error
@@ -133,6 +144,7 @@ class SkohubEditor extends React.Component {
         <main className={`content ${view}`}>
           {schema && validateSchema && (
             <>
+              
               <Form
                 data={json}
                 onChange={data => {
@@ -145,6 +157,13 @@ class SkohubEditor extends React.Component {
                   this.setState({ json: data })
                 }}
               >
+              <div>
+                <label className="switch">
+                <input type="checkbox" onClick={() => this.toggleSchema(showExtended)}/>
+                <span className="slider round"></span>
+                </label><span>Erweiterte Metadaten</span>
+                
+              </div>
                 <Builder
                   schema={schema}
                   widgets={{ SkohubLookup }}
