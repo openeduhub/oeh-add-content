@@ -1,5 +1,5 @@
 import React from 'react'
-import refParser from 'json-schema-ref-parser';
+import refParser from 'json-schema-ref-parser'
 
 import Form from './JSONPointerForm/Form'
 import Builder from './JSONPointerForm/Builder'
@@ -74,8 +74,8 @@ class SkohubEditor extends React.Component {
     this.setState({ schemaURL: url })
   }
 
-  toggleSchema(showExtended) {
-    this.setState({ showExtended: !showExtended})
+  toggleSchema (showExtended) {
+    this.setState({ showExtended: !showExtended })
     if (!showExtended) {
       this.setSchema(EXTENDED_SCHEMA)
     } else {
@@ -83,7 +83,7 @@ class SkohubEditor extends React.Component {
     }
   }
 
-  callWloApi ( data ) {
+  callWloApi (data) {
     fetch(API_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -144,7 +144,6 @@ class SkohubEditor extends React.Component {
         <main className={`content ${view}`}>
           {schema && validateSchema && (
             <>
-              
               <Form
                 data={json}
                 onChange={data => {
@@ -152,18 +151,16 @@ class SkohubEditor extends React.Component {
                 }}
                 validate={validateSchema}
                 onSubmit={(data) => {
-                  //console.log(data)
                   this.callWloApi(data)
                   this.setState({ json: data })
                 }}
               >
-              <div>
-                <label className="switch">
-                <input type="checkbox" onClick={() => this.toggleSchema(showExtended)}/>
-                <span className="slider round"></span>
-                </label><span>Erweiterte Metadaten</span>
-                
-              </div>
+                <div>
+                  <label className="switch">
+                    <input type="checkbox" onClick={() => this.toggleSchema(showExtended)}/>
+                    <span className="slider round"></span>
+                  </label><span>Erweiterte Metadaten</span>
+                </div>
                 <Builder
                   schema={schema}
                   widgets={{ SkohubLookup }}
