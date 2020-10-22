@@ -82,18 +82,24 @@ const SkohubLookup = (props) => {
   })
 
   useEffect(() => {
-    fetch(schemaLocation, {
-      headers: {
-        Accept: 'application/json'
-      }
-    }).then(response => response.json())
+    fetch(
+      schemaLocation.endsWith('index.json') ? schemaLocation
+        : schemaLocation.endsWith('/') ? schemaLocation.concat('index.json')
+          : schemaLocation.concat('/index.json'), {
+        headers: {
+          Accept: 'application/json'
+        }
+      }).then(response => response.json())
       .then(setScheme)
 
-    fetch(schemaLocation.includes('index.json') ? schemaLocation.replace(/.json?/, '.index') : schemaLocation, {
-      headers: {
-        Accept: 'text/index'
-      }
-    }).then(response => response.json())
+    fetch(
+      schemaLocation.endsWith('index.json') ? schemaLocation.replace(/.json?/, '.index')
+        : schemaLocation.endsWith('/') ? schemaLocation.concat('index.index')
+          : schemaLocation.concat('index.index'), {
+        headers: {
+          Accept: 'text/index'
+        }
+      }).then(response => response.json())
       .then(serialized => {
         const idx = FlexSearch.create()
         idx.import(serialized)
